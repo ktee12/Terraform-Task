@@ -1,9 +1,9 @@
 # Module: Network
 # VPC variable
 resource "aws_vpc" "public_vpc" {
-  cidr_block = var.vpc_cidr 
+  cidr_block           = var.vpc_cidr
   enable_dns_hostnames = var.enable_dns_hostnames
-  enable_dns_support = var.enable_dns_support
+  enable_dns_support   = var.enable_dns_support
 
   tags = {
     Name = "$(var.project_name)-VPC"
@@ -24,8 +24,8 @@ data "aws_availability_zones" "zones" {}
 
 # Create Public availability zone
 resource "aws_subnet" "public_subnet" {
-  vpc_id = aws_vpc.public_vpc.id
-  cidr_block = var.public_subnet_cidr 
+  vpc_id            = aws_vpc.public_vpc.id
+  cidr_block        = var.public_subnet_cidr
   availability_zone = data.aws_availability_zones.zones.names[2]
 
   tags = {
@@ -49,6 +49,6 @@ resource "aws_route_table" "default_routes" {
 
 # Associate Public Subnet AZ to "Public Route Table"
 resource "aws_route_table_association" "route_association" {
-  subnet_id = aws_subnet.public_subnet.id
+  subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.default_routes.id
 }
