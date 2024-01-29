@@ -44,7 +44,7 @@ variable "instance_type" {
 variable "instance_count" {
     description = "The number of EC2 instances to be created."
   type = number
-  default = 1
+  
 }
 
 variable "associate_public_ip_address" {
