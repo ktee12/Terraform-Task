@@ -10,6 +10,10 @@ resource "aws_instance" "web1_prod" {
                 echo "Hello World"
                 EOF
     user_data_replace_on_change = true
+
+    tags = {
+    Name = "Terraform Task - web1_prod"
+  }
 }
 
 resource "aws_instance" "web2_prod" {
@@ -24,6 +28,10 @@ resource "aws_instance" "web2_prod" {
                 echo "Hello World"
                 EOF
     user_data_replace_on_change = true
+
+    tags = {
+    Name = "Terraform Task - web2_prod"
+  }
 }
 
 resource "aws_instance" "web3_prod" {
@@ -38,6 +46,10 @@ resource "aws_instance" "web3_prod" {
                 echo "Hello World"
                 EOF
     user_data_replace_on_change = true
+
+    tags = {
+    Name = "Terraform Task - web3_prod"
+  }
 }
 
 resource "aws_security_group" "sg1_prod" {
@@ -49,4 +61,8 @@ resource "aws_security_group" "sg1_prod" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    tags = {
+    Name = "Terraform Task - sg1_prod"
+  }
 }
