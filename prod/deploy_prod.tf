@@ -1,30 +1,22 @@
 # EC2 instance for prod
 module "aws_instance" {
-  environment = "prod"
   source = "../modules/compute"
-  count = 3  
+  environment = "prod"  
+  instance_count = 3  
   instance_type = "t3.large"
-  vpc_security_group_ids = [aws_security_group.sg1_prod.id]
-  subnet_id = aws_subnet.public-subnet.id  
-  user_data = <<-EOF
-                #!/bin/bash
-                echo "Hello World"
-                EOF
+  vpc_security_group_ids = [module.security.sg_id]
+  subnet_id = module.network.public_subnet_id 
+  user_data = file("${path.module}/user-data.sh")
   
 }
 
+# vpc resource for prod
+module "network" {
+  source = "../modules/network"  
+}
 
-resource "aws_security_group" "sg1_prod" {
-    name = "sg1prod"
-    vpc_id = aws_vpc.public-vpc.id
-    ingress {
-        from_port = 8080
-        to_port   = 65535
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    tags = {
-    Name = "Terraform Task - sg1_prod"
-  }
+# security group resource for prod
+module "security" {
+  source = "../modules/security"
+  vpc_id = module.network.vpc_id
 }

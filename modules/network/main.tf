@@ -1,4 +1,5 @@
-# Create VPC
+# Module: Network
+# VPC variable
 resource "aws_vpc" "public_vpc" {
   cidr_block = var.vpc_cidr 
   enable_dns_hostnames = var.enable_dns_hostnames

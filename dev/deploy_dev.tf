@@ -1,3 +1,4 @@
+# EC2 instance for dev
 module "aws_instance" {
   source = "../modules/compute"
   environment = "dev"  
@@ -8,10 +9,12 @@ module "aws_instance" {
   
 }
 
+# vpc resource for dev
 module "network" {
   source = "../modules/network"  
 }
 
+# security group resource for dev
 module "security" {
   source = "../modules/security"
   vpc_id = module.network.vpc_id

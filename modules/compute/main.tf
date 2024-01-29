@@ -1,5 +1,4 @@
-# EC2 instance
-
+# EC2 instance module
 resource "aws_instance" "web_instance" {
   count = var.instance_count
   ami                         = var.ami

@@ -1,3 +1,4 @@
+# Module: Network Output
 # Export the Project Name
 output "project_name" {
     value = var.project_name
@@ -18,12 +19,4 @@ output "public_subnet_id" {
     value = aws_subnet.public_subnet.id
 }
 
-# Output for VPC
-# output "vpc_id" {
-#   value = aws_vpc.public_vpc.id
-# }
 
-# # Output for Subnet
-# output "subnet_id" {
-#   value = aws_subnet.public_subnet.id
-# }
