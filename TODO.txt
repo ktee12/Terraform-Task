@@ -1,0 +1,22 @@
+TODOS:
+- Draw the architectural diagram explaining how everything connected together.
+- Reconfigure prod and dev to use autoscalling instance which can reduce cost. If necessary, dockerise the web and deploy on Kubernetes instance to save cost and go life on time.
+- Configure the repo to have Dev branch so that developers are not push directly to production.
+- Configure CI/CD for the infrastructure configuration.
+- Implement testing stage in the CI pipeline.
+- Configure actual S3 and DynamoDB for backend storing of state files.
+- If EC2 is mandatory. Create custom AMI with Packer for our application.
+- Reconfigure the network to have private subnet, public subnet, Loadbalancer, and ACL.
+- Deploy new instance as Bastion with ingress of port 22 for envs management.
+- Implement SSL certificate in the envs
+- Ensure granular permissions are given to the users for administration.
+- Allow only necessary ports
+- Work more on security group.
+- For high availability, work on creating the instance in multiple availability zones.
+- Configure the environments to push logs to the cloudwatch or any external monitoring tools like Grafana/Prometeus.
+- Configure an alert system to notify in case there's downtime.
+- If not exist, greate groups and users with granular permissions to work on the configuration file.
+
+
+NOTE: 
+- I've used the approach on creating modules manually assuming that the school want its own modules.
