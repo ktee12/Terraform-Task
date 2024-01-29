@@ -10,7 +10,9 @@ variable "environment" {
   default = ""
 }
 
-variable "vpc_id" {}
+variable "vpc_id" {
+  description = "The id of the vpc"  
+}
 variable "from_port" {
   description = "The port where the traffic is coming from"
   type = number
