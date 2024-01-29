@@ -1,55 +1,14 @@
-resource "aws_instance" "web1_dev" {
-    ami = "ami-0500f74cc2b89fb6b"
-    instance_type = "t2.micro"
-    vpc_security_group_ids = [aws_security_group.sg1_dev.id]
-    subnet_id     = aws_subnet.public-subnet.id
-    associate_public_ip_address = true
-
-    user_data = <<-EOF
+module "aws_instance" {
+  environment = "dev"
+  source = "./modules/compute"
+  count = 3  
+  vpc_security_group_ids = [aws_security_group.sg1_dev.id]
+  subnet_id = aws_subnet.public-subnet.id  
+  user_data = <<-EOF
                 #!/bin/bash
                 echo "Hello World"
                 EOF
-    user_data_replace_on_change = true
-
-    tags = {
-    Name = "Terraform Task - web1_dev"
-  }
-}
-
-resource "aws_instance" "web2_dev" {
-    ami = "ami-0500f74cc2b89fb6b"
-    instance_type = "t2.micro"
-    vpc_security_group_ids = [aws_security_group.sg1_dev.id]
-    subnet_id     = aws_subnet.public-subnet.id
-    associate_public_ip_address = true
-
-    user_data = <<-EOF
-                #!/bin/bash
-                echo "Hello World"
-                EOF
-    user_data_replace_on_change = true
-
-    tags = {
-    Name = "Terraform Task - web2_dev"
-  }
-}
-
-resource "aws_instance" "web3_dev" {
-    ami = "ami-0500f74cc2b89fb6b"
-    instance_type = "t2.micro"
-    vpc_security_group_ids = [aws_security_group.sg1_dev.id]
-    subnet_id     = aws_subnet.public-subnet.id
-    associate_public_ip_address = true
-
-    user_data = <<-EOF
-                #!/bin/bash
-                echo "Hello World"
-                EOF
-    user_data_replace_on_change = true
-
-    tags = {
-    Name = "Terraform Task - web3_dev"
-  }
+  
 }
 
 resource "aws_security_group" "sg1_dev" {
